@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browse Listings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <!-- Reuse the same nav bar -->
+    </header>
+
+    <main>
+        <section class="filters">
+            <form id="filterForm">
+                <label for="soilType">Soil Type:</label>
+                <select id="soilType" name="soilType">
+                    <option value="all">All</option>
+                    <option value="sandy">Sandy</option>
+                    <option value="clay">Clay</option>
+                </select>
+
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" placeholder="City or ZIP">
+
+                <label for="priceRange">Price Range:</label>
+                <input type="number" id="minPrice" name="minPrice" placeholder="Min">
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="Max">
+
+                <button type="submit">Apply Filters</button>
+            </form>
+        </section>
+
+        <section class="listings">
+            <div class="listing-card">
+                <h3>Loamy Soil</h3>
+                <p>Quantity: 100kg</p>
+                <p>Price: $50</p>
+                <p>Location: Springfield</p>
+                <button class="btn">Contact Seller</button>
+            </div>
+            <!-- More listing cards will go here dynamically -->
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Soil Market</p>
+    </footer>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
