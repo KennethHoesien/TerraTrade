@@ -26,9 +26,11 @@
     </header>
     <nav class="sticky-nav">
         <ul>
-            <li><a href="{{ url_for('views.home') }}">Home</a></li>
+            <li><a href="{{ url_for('views.index') }}">Home</a></li>
             <li><a href="{{ url_for('views.listing') }}">Listings</a></li>
             <li><a href="{{ url_for('views.contact') }}">Contact</a></li>
+            <li><a href="{{ url_for('auth.login') }}" class="btn">Login</a></li>
+            <li><a href="{{ url_for('auth.signup') }}" class="btn">Sign Up</a></li>
         </ul>
     </nav>
     <main>

@@ -1,27 +1,52 @@
-{% extends "base.html" %}
-
-{% block title %} Login {% endblock %}
-
-{% block content %}
-<div class="container mt-3 col-md-5 col-xl-4 mx-auto">
-    <h3 class="text-center mb-3">Login</h3>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <div class="alert alert-info text-center" role="alert">
-            {{ messages[0] }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Terra Traders</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span>T</span>
+            <span>e</span>
+            <span>r</span>
+            <span>r</span>
+            <span>a</span>
+            <span>&nbsp;</span>
+            <span>T</span>
+            <span>r</span>
+            <span>a</span>
+            <span>d</span>
+            <span>e</span>
+            <span>r</span>
+            <span>s</span>
         </div>
-    {% endif %}
-    {% endwith %}
-    <form method="POST" action="/login" class="border p-4 rounded shadow-sm bg-light">
-        <div class="mb-3">
-            <input type="email" name="email" placeholder="Email" class="form-control" required autofocus>
-        </div>
-
-        <div class="mb-3">
-            <input type="password" name="password" placeholder="Password" class="form-control" required>
-        </div>
-
-        <button class="btn btn-primary w-100">Log In</button>
-    </form>
-</div>
-{% endblock %}
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('views.index') }}">Index</a></li>
+            <li><a href="{{ url_for('views.listing') }}">Listings</a></li>
+            <li><a href="{{ url_for('views.contact') }}">Contact</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="form-container">
+            <h1>Login</h1>
+            <form action="{{ url_for('auth.login') }}" method="POST">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <p>Don't have an account? <a href="{{ url_for('auth.signup') }}">Sign up here</a>.</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Soil Market. All rights reserved.</p>
+    </footer>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

@@ -1,8 +1,9 @@
 from flask import g
 import flask
 import pymysql
-# import mysql.connector
-# from mysql.connector import Error
+
+
+
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -24,9 +25,16 @@ def executeCommit(sql, args):
 
 
 def fetchone(sql, args=None):
-    with get_db().cursor() as cursor:
-        cursor.execute(sql, args)
-        return cursor.fetchone()
+    conn = MySQLdb.connect(user='username', password='password', host='localhost', database='soilmarket')
+    cursor = conn.cursor()
+    cursor.execute(sql, args)
+    result = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return result
+    # with get_db().cursor() as cursor:
+    #     cursor.execute(sql, args)
+    #     return cursor.fetchone()
 
 def fetchall(sql, args=()):
     """Fetch all rows from a SQL query."""

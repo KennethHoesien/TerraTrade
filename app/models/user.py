@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from app.db_manager import fetchone
+from werkzeug.security import check_password_hash
 
 class User(UserMixin):
     
@@ -13,15 +14,20 @@ class User(UserMixin):
     @staticmethod 
     def findMatchOR(keys, values):
         # Build the SQL query
-        sql = "SELECT `UserId`, `Password`, `Name`, `Address`, `Role` FROM Users WHERE "
+        sql = "SELECT `user_id`, `password`, `name`, `address`, `role` FROM Users WHERE "
         where = ' OR '.join(map(lambda k: f"`{k}` = %s", keys))
         query = sql + where
         print(f"Executing SQL: {query}")
         # Execute the query and fetch one result
-        result = fetchone(query, values)
+        result = fetchone(sql, (user_id))
     
         # If no result is found, return None
         if not result:
             return None
         # Unpack the result into the User constructor
         return User(*result)
+    
+    @staticmethod
+    def verify_password(stored_password, provided_password):
+        # Compare the hashed password with the provided one
+        return check_password_hash(stored_password, provided_password)
