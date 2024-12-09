@@ -16,7 +16,8 @@ CREATE TABLE Owners (
     owner_id INT PRIMARY KEY,
     name VARCHAR(255),
     phone_number VARCHAR(255),
-    email VARCHAR(255)
+    email VARCHAR(255),
+    password VARCHAR(255)
 );
 
 CREATE TABLE Users (
@@ -24,8 +25,17 @@ CREATE TABLE Users (
     name VARCHAR(255),
     address VARCHAR(255),
     role VARCHAR(255),
-    phone_number INT
+    phone_number INT,
+    password VARCHAR (255)
 );
+
+CREATE TABLE Admin (
+    admin_id INT PRIMARY KEY,
+    name VARCHAR(255), 
+    address VARCHAR(255), 
+    phone_number INT,
+    password VARCHAR(255)
+);+
 
 CREATE TABLE Farms (
     farm_id VARCHAR(255) PRIMARY KEY,
