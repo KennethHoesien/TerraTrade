@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from flask import Flask, app, request
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -7,6 +8,12 @@ from datetime import datetime
 db = SQLAlchemy()
 
 # classes that refer to the relations in the databse 
+=======
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+>>>>>>> Stashed changes
 class SoilTypes(db.Model):
     __tablename__ = 'Soil_Types'
     soil_id = db.Column(db.Integer, primary_key=True)
@@ -18,8 +25,11 @@ class SoilTypes(db.Model):
     availability = db.Column(db.String(255))
     location = db.Column(db.String(255))
 
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 class Owners(db.Model):
     __tablename__ = 'Owners'
     owner_id = db.Column(db.Integer, primary_key=True)
@@ -30,12 +40,19 @@ class Owners(db.Model):
 class Users(db.Model):
     __tablename__ = 'Users'
     user_id = db.Column(db.Integer, primary_key=True)
+<<<<<<< Updated upstream
+=======
+    password = db.Column(db.String(255))
+>>>>>>> Stashed changes
     name = db.Column(db.String(255))
     address = db.Column(db.String(255))
     role = db.Column(db.String(255))
     phone_number = db.Column(db.Integer)
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 class Farms(db.Model):
     __tablename__ = 'Farms'
     farm_id = db.Column(db.String(255), primary_key=True)
@@ -53,6 +70,7 @@ class Listings(db.Model):
     price = db.Column(db.Float)
     quantity = db.Column(db.Float)
     date = db.Column(db.Date)
+<<<<<<< Updated upstream
 
 # making functions to be used by the website devs to connect to the database
 def add_user(name, address, role, phone_number):
@@ -201,3 +219,5 @@ def api_add_listing():
     except Exception as e:
         return {"success": False, "error": str(e)}, 400
 '''
+=======
+>>>>>>> Stashed changes
