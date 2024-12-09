@@ -6,6 +6,14 @@ from app import db
 
 class User(db.Model):
     
+    __tablename__ = 'user'
+
+    user_id = db.Column(db.Integer, primary_key=True)  # Primary key
+    password = db.Column(db.String(255), nullable=False)
+    name = db.Column(db.String(255), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(50), nullable=False)
+    
     def __init__(self, user_id, password, name, address, role, phone_number):
         self.user_id = user_id
         self.password = password
