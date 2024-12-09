@@ -11,8 +11,8 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from app.views import views
-from app.auth import auth
-from .models.user import User
+
+
 
 
 CONFIG_FILE = "../config.py"
@@ -25,7 +25,7 @@ def create_app():
     #app.register_blueprint(api.api)
     app.config.from_pyfile(CONFIG_FILE)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/soilmarket'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://liquid:1234@localhost/terratrade'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Initialize the db with the app
@@ -36,6 +36,7 @@ def create_app():
     login_manager.login_view = 'views.login' 
     login_manager.init_app(app)
 
+    from app.auth import auth
     app.register_blueprint(views)
     app.register_blueprint(auth, url_prefix='/auth')
     

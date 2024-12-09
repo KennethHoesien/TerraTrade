@@ -25,16 +25,19 @@ def executeCommit(sql, args):
 
 
 def fetchone(sql, args=None):
-    conn = MySQLdb.connect(user='username', password='password', host='localhost', database='soilmarket')
-    cursor = conn.cursor()
-    cursor.execute(sql, args)
-    result = cursor.fetchone()
-    cursor.close()
-    conn.close()
+    db = get_db()
+    with db.cursor() as cursor:
+        cursor.execute(sql, args)
+        result = cursor.fetchone()
     return result
-    # with get_db().cursor() as cursor:
-    #     cursor.execute(sql, args)
-    #     return cursor.fetchone()
+    # conn = MySQLdb.connect(user='username', password='password', host='localhost', database='soilmarket')
+    # cursor = conn.cursor()
+    # cursor.execute(sql, args)
+    # result = cursor.fetchone()
+    # cursor.close()
+    # conn.close()
+    # return result
+    
 
 def fetchall(sql, args=()):
     """Fetch all rows from a SQL query."""

@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, login_required, logout_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from .models.user import User
-
+import uuid
 
 
 
@@ -47,19 +47,20 @@ auth = Blueprint("auth", __name__)
 @auth.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        user_id = request.form.get('user_id')
+        # Automatically generate a unique user ID
+        user_id = str(uuid.uuid4())[:8]  # Generate a random unique ID (first 8 characters)
         password = request.form.get('password')
         name = request.form.get('name')
         address = request.form.get('address')
         role = request.form.get('role')
         phone_number = request.form.get('phone_number')
         
-        existing_user = User.findMatchOR(('user_id',), (user_id,))
+        existing_user = User.findMatchOR(('name',), (name,))
 
         if existing_user: 
             if existing_user.name.lower() == name.lower():
                 flash("Your name is already registered")
-            if str(existing_user.id) == user_id:
+            if str(existing_user.user_id) == user_id:
                 flash("User ID already registered")
             return redirect(url_for('auth.signup'))
         

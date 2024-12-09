@@ -1,25 +1,28 @@
 from flask_login import UserMixin
+from flask_sqlalchemy import SQLAlchemy
 from app.db_manager import fetchone
 from werkzeug.security import check_password_hash
+from app import db
 
-class User(UserMixin):
+class User(db.Model):
     
-    def __init__(self, user_id, password, name, address, role):
+    def __init__(self, user_id, password, name, address, role, phone_number):
         self.user_id = user_id
         self.password = password
         self.name = name
         self.address = address
         self.role = role
+        self.phone_number = phone_number
 
     @staticmethod 
     def findMatchOR(keys, values):
         # Build the SQL query
-        sql = "SELECT `user_id`, `password`, `name`, `address`, `role` FROM Users WHERE "
+        sql = "SELECT `user_id`, `password`, `name`, `address`, `role`, `phone_number` FROM Users WHERE "
         where = ' OR '.join(map(lambda k: f"`{k}` = %s", keys))
         query = sql + where
         print(f"Executing SQL: {query}")
         # Execute the query and fetch one result
-        result = fetchone(sql, (user_id))
+        result = fetchone(query, values)
     
         # If no result is found, return None
         if not result:
