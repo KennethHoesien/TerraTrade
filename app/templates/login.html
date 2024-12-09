@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div class="container mt-3 col-md-5 col-xl-4 mx-auto">
+    <h3 class="text-center mb-3">Login</h3>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="alert alert-info text-center" role="alert">
+            {{ messages[0] }}
+        </div>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="/login" class="border p-4 rounded shadow-sm bg-light">
+        <div class="mb-3">
+            <input type="email" name="email" placeholder="Email" class="form-control" required autofocus>
+        </div>
+
+        <div class="mb-3">
+            <input type="password" name="password" placeholder="Password" class="form-control" required>
+        </div>
+
+        <button class="btn btn-primary w-100">Log In</button>
+    </form>
+</div>
+{% endblock %}
